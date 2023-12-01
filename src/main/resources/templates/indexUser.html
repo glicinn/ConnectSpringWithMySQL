@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Пользователи</title>
+  <link rel="stylesheet" href="src/main/resources/static/styles.css" th:href="@{/styles.css}">
+</head>
+<body>
+
+<h2 class="text-center mb-4">Добавление пользователя</h2>
+<form method="post" action="/home/CRUDresult">
+  <label>Логин: <input name="param1"></label> <br> <br>
+  <label>Пароль: <input name="param2"></label> <br> <br>
+  <label>Почта: <input name="param3"></label> <br> <br>
+  <label>Баланс: <input name="param4"></label> <br> <br>
+  <label>Роль: <input name="param5"></label> <br> <br>
+  <input hidden value="u" name="type5">
+  <button class="add-btn">Добавить</button> <br><br>
+</form>
+
+<hr>
+
+<!--<br>-->
+<!--<h2 class="text-center mb-4">Поиск категории</h2>-->
+<!--<form method="get" action="/home/indexCategoryByName">-->
+<!--  <input type="text" name="name" placeholder="Название категории"> <br> <br>-->
+<!--  <button class="add-btn">Найти</button> <br><br>-->
+<!--</form>-->
+<!--<hr>-->
+
+<h2 class="text-center mb-4">Список пользователей</h2>
+<div th:each="user : ${userList}">
+  <a th:href="@{/home/indexUser/showUser/{id}(id=${user.getUserID()})}" th:text="${user.getUserLogin()}">user</a>
+</div>
+<br><hr><br>
+
+<center>
+  <div class="navigation">
+    <form method="get" action="/static">
+      <a class="btn btn-success btn-block mb-3 animated-button">
+        Назад
+      </a>
+    </form>
+  </div>
+</center>
+
+
+</body>
+</html>

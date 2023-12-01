@@ -1,0 +1,59 @@
+.navigation{
+    width: 100%;
+    align-content: center;
+    padding: 20px;
+}
+
+.main-body {
+    font-family: 'Avenir', sans-serif;
+    padding-top: 50px;
+    background-color: #f8f9fa;
+}
+
+body {
+    font-family: 'Avenir', sans-serif;
+    padding-top: 20px;
+    background-color: #f8f9fa;
+}
+
+
+.animated-button {
+    display: inline-block;
+    padding: 10px 10px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+    background-color: #483D8B;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 500px;
+    height: 30px;
+}
+
+.animated-button:hover {
+    transform: scale(1.1);
+}
+
+.add-btn {
+    border: 0;
+    display: inline-block;
+    padding: 10px 10px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+    background-color: #483D8B;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 200px;
+    height: 45px;
+}
+
+.add-btn:hover {
+    transform: scale(1.1);
+}

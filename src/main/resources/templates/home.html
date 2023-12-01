@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+    <link rel="stylesheet" href="src/main/resources/static/styles.css" th:href="@{/styles.css}">
+</head>
+<body class="main-body">
+
+
+<center>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Представленные модели</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+                <a href="/home/indexCategory?" class="btn btn-success btn-block mb-3 animated-button">
+                    <form method="get" action="/home/indexCategory">Категории</form>
+                </a>
+                <br><br>
+                <a href="/home/indexUser?" class="btn btn-success btn-block mb-3 animated-button">
+                    <form method="get" action="/home/indexUser">Пользователи</form>
+                </a>
+                <br><br>
+                <a href="/home/indexProduct?" class="btn btn-success btn-block mb-3 animated-button">
+                    <form method="get" action="/home/indexProduct">Товары</form>
+                </a>
+                <br><br>
+                <a href="/home/indexOrdering?" class="btn btn-success btn-block mb-3 animated-button">
+                    <form method="get" action="/home/indexOrdering">Заказы </form>
+                </a>
+
+        </div>
+    </div>
+</div>
+</center>
+
+</body>
+</html>

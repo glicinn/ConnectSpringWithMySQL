@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Категория</title>
+    <link rel="stylesheet" href="src/main/resources/static/styles.css" th:href="@{/styles.css}">
+</head>
+<body>
+<p th:text="${category.getCategoryID()}">value</p>
+<p th:text="${category.getCategoryName()}">value</p>
+<p th:text="${category.getAgeLimit()}">value</p>
+</body>
+</html>

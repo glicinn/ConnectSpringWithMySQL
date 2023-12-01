@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Заказы</title>
+  <link rel="stylesheet" href="src/main/resources/static/styles.css" th:href="@{/styles.css}">
+</head>
+<body>
+
+<h2 class="text-center mb-4">Добавление заказа</h2>
+<form method="post" action="/home/CRUDresult">
+  <label>Номер заказа: <input name="param1"></label> <br> <br>
+  <input hidden value="o" name="type5">
+  <button class="add-btn">Добавить</button> <br><br>
+</form>
+
+<hr>
+
+<!--<br>-->
+<!--<h2 class="text-center mb-4">Поиск заказа</h2>-->
+<!--<form method="get" action="/home/indexCategoryByName">-->
+<!--  <input type="text" name="name" placeholder="Название категории"> <br> <br>-->
+<!--  <button class="add-btn">Найти</button> <br><br>-->
+<!--</form>-->
+<!--<hr>-->
+
+<h2 class="text-center mb-4">Список заказов</h2>
+<div th:each="ordering : ${orderingList}">
+  <a th:href="@{/home/indexOrdering/showOrdering/{id}(id=${ordering.getOrderingID()})}" th:text="${ordering.getOrderingNumber()}">ordering</a>
+</div>
+<br><hr><br>
+
+<center>
+  <div class="navigation">
+    <form method="get" action="/static">
+      <a class="btn btn-success btn-block mb-3 animated-button">
+        Назад
+      </a>
+    </form>
+  </div>
+</center>
+
+
+</body>
+</html>

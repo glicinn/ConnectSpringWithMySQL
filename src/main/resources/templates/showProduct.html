@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Товар</title>
+  <link rel="stylesheet" href="src/main/resources/static/styles.css" th:href="@{/styles.css}">
+</head>
+<body>
+<p th:text="${product.getProductID()}">value</p>
+<p th:text="${product.getProductName()}">value</p>
+<p th:text="${product.getProductDescription()}">value</p>
+</body>
+</html>
