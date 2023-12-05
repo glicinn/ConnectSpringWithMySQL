@@ -1,10 +1,7 @@
 package com.example.springmysql.controller;
 
 import com.example.springmysql.dao.AllDAO;
-import com.example.springmysql.newModels.Category;
-import com.example.springmysql.newModels.Ordering;
-import com.example.springmysql.newModels.Product;
-import com.example.springmysql.newModels.User;
+import com.example.springmysql.newModels.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,6 +52,30 @@ public class HomeController {
         return "indexOrdering";
     }
 
+    @GetMapping("/home/indexRole")
+    public String roleIndex(Model model) throws SQLException {
+        model.addAttribute("roleList", (List<Role>)(Object)_allDAO.get(new Role()));//список всех ролей
+        return "indexRole";
+    }
+
+    @GetMapping("/home/indexSupplier")
+    public String supplierIndex(Model model) throws SQLException {
+        model.addAttribute("supplierList", (List<Supplier>)(Object)_allDAO.get(new Supplier()));//список всех поставщиков
+        return "indexSupplier";
+    }
+
+    @GetMapping("/home/indexBenefit")
+    public String benefitIndex(Model model) throws SQLException {
+        model.addAttribute("benefitList", (List<Benefit>)(Object)_allDAO.get(new Benefit()));//список всех льгот
+        return "indexBenefit";
+    }
+
+    @GetMapping("/home/indexFeedback")
+    public String feedbackIndex(Model model) throws SQLException {
+        model.addAttribute("feedbackList", (List<Feedback>)(Object)_allDAO.get(new Feedback()));//список всех отзывов
+        return "indexFeedback";
+    }
+
 //    @GetMapping("/home/indexPeople")
 //    public String peopleIndex(Model model) throws SQLException {
 //        model.addAttribute("peopleList", (List<People>)(Object)_allDAO.get(new People()));//список всех людей
@@ -99,6 +120,32 @@ public class HomeController {
         return "showOrdering";
     }
 
+
+
+    @GetMapping("/home/indexRole/showRole/{id}")
+    public String roleShow(@PathVariable("id") int id, Model model) throws SQLException {
+        model.addAttribute("role", (Role)_allDAO.get(id, new Role()));
+        return "showRole";
+    }
+
+    @GetMapping("/home/indexSupplier/showSupplier/{id}")
+    public String supplierShow(@PathVariable("id") int id, Model model) throws SQLException {
+        model.addAttribute("supplier", (Supplier)_allDAO.get(id, new Supplier()));
+        return "showSupplier";
+    }
+
+    @GetMapping("/home/indexBenefit/showBenefit/{id}")
+    public String benefitShow(@PathVariable("id") int id, Model model) throws SQLException {
+        model.addAttribute("benefit", (Benefit)_allDAO.get(id, new Benefit()));
+        return "showBenefit";
+    }
+
+    @GetMapping("/home/indexFeedback/showFeedback/{id}")
+    public String feedbackShow(@PathVariable("id") int id, Model model) throws SQLException {
+        model.addAttribute("feedback", (Feedback)_allDAO.get(id, new Feedback()));
+        return "showFeedback";
+    }
+
 //    @GetMapping("/home/indexPeople/showPeople/{id}")
 //    public String peopleShow(@PathVariable("id") int id, Model model) throws SQLException {
 //        model.addAttribute("people", (People)_allDAO.get(id, new People()));
@@ -134,6 +181,24 @@ public class HomeController {
                     returnString = "indexOrdering";
                     break;
 
+
+                case "r":
+                    object = new Role(0, param1);
+                    returnString = "indexRole";
+                    break;
+                case "s":
+                    object = new Supplier(0, param1);
+                    returnString = "indexSupplier";
+                    break;
+                case "b":
+                    object = new Benefit(0, param1, Integer.parseInt(param2));
+                    returnString = "indexBenefit";
+                    break;
+                case "f":
+                    object = new Feedback(0, param1);
+                    returnString = "indexFeedback";
+                    break;
+
 //                case "p":
 //                    object = new People(0, param1, Integer.parseInt(param2), param3, param4);
 //                    returnString = "indexPeople";
@@ -145,7 +210,7 @@ public class HomeController {
             }
         }
         catch (Exception e){
-            model.addAttribute("message", "Что то пошло не так");
+            model.addAttribute("message", "Что-то пошло не так");
         }
         return new RedirectView(returnString);
     }

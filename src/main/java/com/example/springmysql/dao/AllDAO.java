@@ -1,9 +1,6 @@
 package com.example.springmysql.dao;
 
-import com.example.springmysql.newModels.Category;
-import com.example.springmysql.newModels.Ordering;
-import com.example.springmysql.newModels.Product;
-import com.example.springmysql.newModels.User;
+import com.example.springmysql.newModels.*;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
@@ -76,6 +73,50 @@ public class AllDAO {
                         "('"+id+"','"+a.getOrderingNumber()+"')";
 
 
+            } else if (object.getClass() == Role.class) {
+                Role a = (Role) object;
+                String querySel = "SELECT roleid FROM role ORDER BY roleid DESC";
+                ResultSet resState = stateQuery.executeQuery(querySel);
+                if (resState.next()) {
+                    id = resState.getInt(1) + 1;
+                }
+                query = "INSERT INTO `role`(`roleid`, `role_name`) VALUES " +
+                        "('"+id+"','"+a.getRoleName()+"')";
+
+
+            } else if (object.getClass() == Benefit.class) {
+                Benefit a = (Benefit) object;
+                String querySel = "SELECT benefitid FROM benefit ORDER BY benefitid DESC";
+                ResultSet resState = stateQuery.executeQuery(querySel);
+                if (resState.next()) {
+                    id = resState.getInt(1) + 1;
+                }
+                query = "INSERT INTO `benefit`(`benefitid`, `benefit_name`, `benefit_discount`) VALUES " +
+                        "('"+id+"','"+a.getBenefitName()+"','"+a.getBenefitDiscount()+"')";
+
+
+            } else if (object.getClass() == Supplier.class) {
+                Supplier a = (Supplier) object;
+                String querySel = "SELECT supplierid FROM supplier ORDER BY supplierid DESC";
+                ResultSet resState = stateQuery.executeQuery(querySel);
+                if (resState.next()) {
+                    id = resState.getInt(1) + 1;
+                }
+                query = "INSERT INTO `supplier`(`supplierid`, `supplier_name`) VALUES " +
+                        "('"+id+"','"+a.getSupplierName()+"')";
+
+
+            } else if (object.getClass() == Feedback.class) {
+                Feedback a = (Feedback) object;
+                String querySel = "SELECT feedbackid FROM feedback ORDER BY feedbackid DESC";
+                ResultSet resState = stateQuery.executeQuery(querySel);
+                if (resState.next()) {
+                    id = resState.getInt(1) + 1;
+                }
+                query = "INSERT INTO `feedback`(`feedbackid`, `feedback_text`) VALUES " +
+                        "('"+id+"','"+a.getFeedbackText()+"')";
+
+
 //            } else if (object.getClass() == People.class) {
 //                People a = (People) object;
 //                String querySel = "SELECT peopleid FROM people ORDER BY peopleid DESC";
@@ -114,6 +155,16 @@ public class AllDAO {
             query = "DELETE FROM `ordering` WHERE 'orderingid' == "+((Ordering) object).getOrderingID();
 
 
+        } else if (object.getClass() == Role.class) {
+            query = "DELETE FROM `role` WHERE 'roleid' == "+((Role) object).getRoleID();
+        } else if (object.getClass() == Benefit.class) {
+            query = "DELETE FROM `benefit` WHERE 'benefitid' == "+((Benefit) object).getBenefitID();
+        } else if (object.getClass() == Supplier.class) {
+            query = "DELETE FROM `supplier` WHERE 'supplierid' == "+((Supplier) object).getSupplierID();
+        } else if (object.getClass() == Feedback.class) {
+            query = "DELETE FROM `feedback` WHERE 'feedbackid' == "+((Feedback) object).getFeedbackID();
+
+
 //        } else if (object.getClass() == People.class) {
 //            query = "DELETE FROM `people` WHERE 'peopleid' == "+((People) object).getPeopleID();
 
@@ -133,6 +184,16 @@ public class AllDAO {
         } else if (object.getClass() == Product.class) {
 
         } else if (object.getClass() == Ordering.class) {
+
+
+
+        } else if (object.getClass() == Role.class) {
+
+        } else if (object.getClass() == Supplier.class) {
+
+        } else if (object.getClass() == Benefit.class) {
+
+        } else if (object.getClass() == Feedback.class) {
 
 //        } else if (object.getClass() == People.class) {
 
@@ -188,6 +249,50 @@ public class AllDAO {
             ResultSet set = stateQuery.executeQuery(query);
             while (set.next()){
                 objs.add(new Ordering(set.getInt(1),
+                        set.getString(2)));
+            }
+        }
+
+
+
+
+        else if (object.getClass() == Role.class){
+            query = "SELECT `roleid`, `role_name` from `role`";
+            Statement stateQuery = connection.createStatement();
+            ResultSet set = stateQuery.executeQuery(query);
+            while (set.next()){
+                objs.add(new Role(set.getInt(1),
+                        set.getString(2)));
+            }
+        }
+
+        else if (object.getClass() == Supplier.class){
+            query = "SELECT `supplierid`, `supplier_name` from `supplier`";
+            Statement stateQuery = connection.createStatement();
+            ResultSet set = stateQuery.executeQuery(query);
+            while (set.next()){
+                objs.add(new Supplier(set.getInt(1),
+                        set.getString(2)));
+            }
+        }
+
+        else if (object.getClass() == Benefit.class){
+            query = "SELECT `benefitid`, `benefit_name`, `benefit_discount` from `benefit`";
+            Statement stateQuery = connection.createStatement();
+            ResultSet set = stateQuery.executeQuery(query);
+            while (set.next()){
+                objs.add(new Benefit(set.getInt(1),
+                        set.getString(2),
+                        set.getInt(3)));
+            }
+        }
+
+        else if (object.getClass() == Feedback.class){
+            query = "SELECT `feedbackid`, `feedback_text` from `feedback`";
+            Statement stateQuery = connection.createStatement();
+            ResultSet set = stateQuery.executeQuery(query);
+            while (set.next()){
+                objs.add(new Feedback(set.getInt(1),
                         set.getString(2)));
             }
         }
@@ -257,6 +362,49 @@ public class AllDAO {
             ResultSet set = stateQuery.executeQuery(query);
             while (set.next()){
                 obj = (new Ordering(set.getInt(1),
+                        set.getString(2)));
+            }
+        }
+
+
+
+        else if (object.getClass() == Role.class){
+            query = "SELECT `roleid`, `role_name` from `role` where roleid = "+id;
+            Statement stateQuery = connection.createStatement();
+            ResultSet set = stateQuery.executeQuery(query);
+            while (set.next()){
+                obj = (new Role(set.getInt(1),
+                        set.getString(2)));
+            }
+        }
+
+        else if (object.getClass() == Supplier.class){
+            query = "SELECT `supplierid`, `supplier_name` from `supplier` where supplierid = "+id;
+            Statement stateQuery = connection.createStatement();
+            ResultSet set = stateQuery.executeQuery(query);
+            while (set.next()){
+                obj = (new Supplier(set.getInt(1),
+                        set.getString(2)));
+            }
+        }
+
+        else if (object.getClass() == Benefit.class){
+            query = "SELECT `benefitid`, `benefit_name`, `benefit_discount` from `benefit` where benefitid = "+id;
+            Statement stateQuery = connection.createStatement();
+            ResultSet set = stateQuery.executeQuery(query);
+            while (set.next()){
+                obj = (new Benefit(set.getInt(1),
+                        set.getString(2),
+                        set.getInt(3)));
+            }
+        }
+
+        else if (object.getClass() == Feedback.class){
+            query = "SELECT `feedbackid`, `feedback_text` from `feedback` where feedbackid = "+id;
+            Statement stateQuery = connection.createStatement();
+            ResultSet set = stateQuery.executeQuery(query);
+            while (set.next()){
+                obj = (new Feedback(set.getInt(1),
                         set.getString(2)));
             }
         }

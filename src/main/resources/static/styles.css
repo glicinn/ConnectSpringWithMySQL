@@ -4,9 +4,14 @@
     padding: 20px;
 }
 
+.feedback-input{
+    width: 500px;
+    height: 30px;
+}
+
 .main-body {
     font-family: 'Avenir', sans-serif;
-    padding-top: 50px;
+    padding-top: 10px;
     background-color: #f8f9fa;
 }
 

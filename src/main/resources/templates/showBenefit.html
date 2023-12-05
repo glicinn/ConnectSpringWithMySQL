@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Льгота</title>
+  <link rel="stylesheet" href="src/main/resources/static/styles.css" th:href="@{/styles.css}">
+</head>
+<body>
+<p th:text="${benefit.getBenefitID()}">value</p>
+<p th:text="${benefit.getBenefitName()}">value</p>
+<p th:text="${benefit.getBenefitDiscount()}">value</p>
+</body>
+</html>
